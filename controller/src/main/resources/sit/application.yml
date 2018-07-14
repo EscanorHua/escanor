@@ -1,0 +1,49 @@
+server:
+  port: 8888
+  error:
+    whitelabel:
+      enabled: false
+  tomcat:
+    remote-ip-header: x-forwarded-for
+    protocol_header: x-forwarded-proto
+    port-header: X-Forwarded-Port
+  use-forward-headers: true
+  servlet:
+    context-path: /escanor
+# for jpa
+spring.jpa:
+  databasePlatform: org.hibernate.dialect.MySQL5InnoDBDialect
+  show-sql: true
+  hibernate.ddl-auto: update
+
+spring:
+  datasource:
+    driverClassName: com.mysql.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/escanor?useUnicode=true&characterEncoding=utf-8&autoReconnect=true&failOverReadOnly=false&useSSL=false&useAffectedRows=true&serverTimezone=Hongkong
+    username: root
+    password: root
+    poolName: SpringBootHikariCP
+    maximumPoolSize: 5
+    minimumIdle: 3
+    connectionTimeout: 30000
+    idleTimeout: 30000
+    pool-prepared-statements: true
+    max-open-prepared-statements: 250
+
+mybatis:
+  mapper-locations: classpath*:mapper/*Mapper.xml
+
+logging:
+  level.root: info
+  level.org.mybatis: debug
+  level.cn.utrust.fintech.cdcp.domain: debug
+
+socketpool:
+  min_size: 5
+  max_size: 10
+
+return-value.auto-wrapper: #设置各请求方式返回值是否自动包装
+  post: true
+  put: true
+  delete: true
+  get: true
